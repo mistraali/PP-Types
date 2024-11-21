@@ -14,9 +14,32 @@ string[] names = {
 // After last element should be ".".
 void PrintGroups(string[] t, int perLine)
 {
+    //Variables to determine proper end of line and end of output.
+    var lastName = t.Last();
+    int lineIndex = 0;
 
-    // Write required code.
+    //Loop to print elements and conditional interpunction.
+    foreach(var item in t)
+    {
+        Console.Write(item);
+        if (item == lastName)
+        {
+            Console.Write(".");
+        }
+        else
+        {
+            lineIndex++;
+            Console.Write(", ");
+            if (lineIndex == perLine)
+            {
+                Console.WriteLine();
+                lineIndex = 0;
+            }
+        }
+    }
 
+    //Empty line for aesthetics.
+    Console.WriteLine();
 }
 
 
@@ -27,9 +50,35 @@ void PrintGroups(string[] t, int perLine)
 
 void PrintColumns(string[] t, int perLine, int width)
 {
+    //Variable to determine proper number of columns.
+    int lineIndex = 0;
+    //Loop to print names (and trimm if needed) in columns.
+    foreach (var item in t)
+    {
+        if (item.Length < width)
+        {
+            Console.Write(item);
+            for (int i = width - item.Length; i > 0; i--) { Console.Write(" "); }
+        }
+        else
+        {
+            Console.Write(item[..width]);
+        }
 
-    // Write required code.
+        lineIndex++;
+        if (lineIndex != perLine)
+        {
+            Console.Write("| ");
+        }
+        else
+        {
+            Console.WriteLine();
+            lineIndex = 0;
+        }
+    }
 
+    //Empty line for aesthetics.
+    Console.WriteLine();
 }
 
 
